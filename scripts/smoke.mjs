@@ -163,7 +163,7 @@ test('base only + install + build', async () => {
         logStep('building project');
         await runNpmBuild(projectPath);
     } finally {
-        await rm(workspacePath, { recursive: true, force: true });
+        await rm(workspacePath, { recursive: true, overwrite: true });
     }
 });
 
@@ -206,7 +206,7 @@ test('all features + install + build', async () => {
         logStep('building project');
         await runNpmBuild(projectPath);
     } finally {
-        await rm(workspacePath, { recursive: true, force: true });
+        await rm(workspacePath, { recursive: true, overwrite: true });
     }
 });
 
@@ -239,7 +239,7 @@ test('eslint only', async () => {
 
         await assertFileExists(path.join(projectPath, 'eslint.config.mjs'));
     } finally {
-        await rm(workspacePath, { recursive: true, force: true });
+        await rm(workspacePath, { recursive: true, overwrite: true });
     }
 });
 
@@ -270,7 +270,7 @@ test('stylelint only', async () => {
 
         await assertFileExists(path.join(projectPath, 'stylelint.config.mjs'));
     } finally {
-        await rm(workspacePath, { recursive: true, force: true });
+        await rm(workspacePath, { recursive: true, overwrite: true });
     }
 });
 
@@ -299,7 +299,7 @@ test('react-router only', async () => {
         await assertFileExists(path.join(projectPath, 'src', 'pages', 'main', 'page.tsx'));
         await assertFileExists(path.join(projectPath, 'src', 'pages', 'error', 'page.tsx'));
     } finally {
-        await rm(workspacePath, { recursive: true, force: true });
+        await rm(workspacePath, { recursive: true, overwrite: true });
     }
 });
 
@@ -320,7 +320,7 @@ test('--no-install', async () => {
 
         assert(!nodeModulesExists, 'node_modules should not exist when using --no-install');
     } finally {
-        await rm(workspacePath, { recursive: true, force: true });
+        await rm(workspacePath, { recursive: true, overwrite: true });
     }
 });
 
@@ -340,35 +340,35 @@ test('existing dir + --yes => fail', async () => {
                 cwd: workspacePath,
             });
         } catch (error) {
-            failedAsExpected = String(error.message).includes('Use --force to overwrite it');
+            failedAsExpected = String(error.message).includes('Use --overwrite to overwrite it');
         }
 
-        assert(failedAsExpected, 'command should fail without --force for non-empty existing dir');
+        assert(failedAsExpected, 'command should fail without --overwrite for non-empty existing dir');
     } finally {
-        await rm(workspacePath, { recursive: true, force: true });
+        await rm(workspacePath, { recursive: true, overwrite: true });
     }
 });
 
-test('existing dir + --yes --force => overwrite', async () => {
+test('existing dir + --yes --overwrite => overwrite', async () => {
     const workspacePath = await createTempWorkspace();
-    const projectName = 'force-overwrite-app';
+    const projectName = 'overwrite-overwrite-app';
     const projectPath = path.join(workspacePath, projectName);
 
     try {
         await mkdir(projectPath, { recursive: true });
         await writeFile(path.join(projectPath, 'old.txt'), 'old data', 'utf8');
 
-        await runCli([projectName, '--yes', '--force', '--no-install'], {
+        await runCli([projectName, '--yes', '--overwrite', '--no-install'], {
             cwd: workspacePath,
             stdio: 'inherit',
         });
 
         const oldFileExists = await pathExists(path.join(projectPath, 'old.txt'));
 
-        assert(!oldFileExists, 'old file should be removed after --force overwrite');
+        assert(!oldFileExists, 'old file should be removed after --overwrite overwrite');
         await assertFileExists(path.join(projectPath, 'package.json'));
     } finally {
-        await rm(workspacePath, { recursive: true, force: true });
+        await rm(workspacePath, { recursive: true, overwrite: true });
     }
 });
 
@@ -392,7 +392,7 @@ test('README uses selected package manager commands', async () => {
 
         assertNotIncludes(readme, '`npm run lint`', 'README should not use npm commands when pnpm is selected');
     } finally {
-        await rm(workspacePath, { recursive: true, force: true });
+        await rm(workspacePath, { recursive: true, overwrite: true });
     }
 });
 

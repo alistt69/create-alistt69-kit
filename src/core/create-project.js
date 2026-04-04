@@ -20,7 +20,7 @@ export async function createProject(cliArgs = {}) {
 
     const { targetDirPath } = await prepareTargetDirectory({
         projectName,
-        force: cliArgs.force,
+        overwrite: cliArgs.overwrite,
         yes: cliArgs.yes,
     });
 

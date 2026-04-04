@@ -29,7 +29,7 @@ export function formatHelpMessage() {
         '',
         'Options:',
         '  -y, --yes                    Skip prompts and use defaults',
-        '  --force                      Overwrite target directory if it exists',
+        '  --overwrite                      Overwrite target directory if it exists',
         '  --no-install                 Do not install dependencies',
         '  --features <comma-list>      Example: eslint,stylelint,react-router',
         '  --features all               Enable all features',
@@ -46,7 +46,7 @@ export function formatHelpMessage() {
         '  create-alistt69-kit my-app --features=all',
         '  create-alistt69-kit my-app --pm pnpm --no-install',
         '  create-alistt69-kit my-app --yes',
-        '  create-alistt69-kit my-app --yes --force',
+        '  create-alistt69-kit my-app --yes --overwrite',
     ].join('\n');
 }
 
@@ -57,7 +57,7 @@ export function parseCliArgs(argv) {
         shouldInstallDependencies: undefined,
         packageManager: undefined,
         yes: false,
-        force: false,
+        overwrite: false,
         showHelp: false,
     };
 
@@ -74,8 +74,8 @@ export function parseCliArgs(argv) {
             continue;
         }
 
-        if (arg === '--force') {
-            result.force = true;
+        if (arg === '--overwrite') {
+            result.overwrite = true;
             continue;
         }
 

@@ -90,7 +90,7 @@ npm create alistt69-kit@latest my-app --features=all
 npm create alistt69-kit@latest my-app --pm pnpm
 
 # Overwrite existing directory
-npm create alistt69-kit@latest my-app --yes --force
+npm create alistt69-kit@latest my-app --yes --overwrite
 ```
 
 ## ⚙️ CLI options
@@ -98,7 +98,7 @@ npm create alistt69-kit@latest my-app --yes --force
 | Option | Alias | Description |
 |--------|-------|-------------|
 | `--yes` | `-y` | Skip prompts, use defaults |
-| `--force` | — | Overwrite target directory if it exists |
+| `--overwrite` | — | Overwrite target directory if it exists |
 | `--no-install` | — | Skip dependency installation |
 | `--features <list>` | — | Enable specific features (`eslint`, `react-router`, `all`) |
 | `--pm <name>` | — | Choose package manager (`npm`, `pnpm`, `yarn`) |

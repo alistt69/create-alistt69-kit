@@ -14,7 +14,7 @@ async function pathExists(targetDirPath) {
 
 export async function prepareTargetDirectory({
     projectName,
-    force = false,
+    overwrite = false,
     yes = false,
 }) {
     const targetDirPath = resolve(process.cwd(), projectName);
@@ -37,8 +37,8 @@ export async function prepareTargetDirectory({
         };
     }
 
-    if (force) {
-        await rm(targetDirPath, { recursive: true, force: true });
+    if (overwrite) {
+        await rm(targetDirPath, { recursive: true, overwrite: true });
 
         return {
             targetDirPath,
@@ -48,7 +48,7 @@ export async function prepareTargetDirectory({
 
     if (yes) {
         throw new Error(
-            `Directory already exists and is not empty: ${targetDirPath}. Use --force to overwrite it.`,
+            `Directory already exists and is not empty: ${targetDirPath}. Use --overwrite to overwrite it.`,
         );
     }
 
@@ -61,7 +61,7 @@ export async function prepareTargetDirectory({
         process.exit(0);
     }
 
-    await rm(targetDirPath, { recursive: true, force: true });
+    await rm(targetDirPath, { recursive: true, overwrite: true });
 
     return {
         targetDirPath,
