@@ -28,8 +28,8 @@ export function formatHelpMessage() {
         '  create-alistt69-kit <project-name> [options]',
         '',
         'Options:',
-        '  -y, --yes                    Skip prompts and use defaults',
-        '  --overwrite                      Overwrite target directory if it exists',
+        '  -def, --defaults                    Skip prompts and use defaults',
+        '  --overwrite                  Overwrite target directory if it exists',
         '  --no-install                 Do not install dependencies',
         '  --features <comma-list>      Example: eslint,stylelint,react-router',
         '  --features all               Enable all features',
@@ -45,8 +45,8 @@ export function formatHelpMessage() {
         '  create-alistt69-kit my-app',
         '  create-alistt69-kit my-app --features=all',
         '  create-alistt69-kit my-app --pm pnpm --no-install',
-        '  create-alistt69-kit my-app --yes',
-        '  create-alistt69-kit my-app --yes --overwrite',
+        '  create-alistt69-kit my-app --defaults',
+        '  create-alistt69-kit my-app --defaults --overwrite',
     ].join('\n');
 }
 
@@ -56,7 +56,7 @@ export function parseCliArgs(argv) {
         selectedFeatureIds: undefined,
         shouldInstallDependencies: undefined,
         packageManager: undefined,
-        yes: false,
+        defaults: false,
         overwrite: false,
         showHelp: false,
     };
@@ -69,8 +69,8 @@ export function parseCliArgs(argv) {
             continue;
         }
 
-        if (arg === '-y' || arg === '--yes') {
-            result.yes = true;
+        if (arg === '-def' || arg === '--defaults') {
+            result.defaults = true;
             continue;
         }
 

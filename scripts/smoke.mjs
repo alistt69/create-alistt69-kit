@@ -135,7 +135,7 @@ test('base only + install + build', async () => {
 
     try {
         logStep('creating project');
-        await runCli([projectName, '--features=', '--yes'], {
+        await runCli([projectName, '--features=', '--defaults'], {
             cwd: workspacePath,
             stdio: 'inherit',
         });
@@ -174,7 +174,7 @@ test('all features + install + build', async () => {
 
     try {
         logStep('creating project');
-        await runCli([projectName, '--features=all', '--yes'], {
+        await runCli([projectName, '--features=all', '--defaults'], {
             cwd: workspacePath,
             stdio: 'inherit',
         });
@@ -216,7 +216,7 @@ test('eslint only', async () => {
     const projectPath = path.join(workspacePath, projectName);
 
     try {
-        await runCli([projectName, '--features=eslint', '--yes'], {
+        await runCli([projectName, '--features=eslint', '--defaults'], {
             cwd: workspacePath,
             stdio: 'inherit',
         });
@@ -249,7 +249,7 @@ test('stylelint only', async () => {
     const projectPath = path.join(workspacePath, projectName);
 
     try {
-        await runCli([projectName, '--features=stylelint', '--yes'], {
+        await runCli([projectName, '--features=stylelint', '--defaults'], {
             cwd: workspacePath,
             stdio: 'inherit',
         });
@@ -280,7 +280,7 @@ test('react-router only', async () => {
     const projectPath = path.join(workspacePath, projectName);
 
     try {
-        await runCli([projectName, '--features=react-router', '--yes'], {
+        await runCli([projectName, '--features=react-router', '--defaults'], {
             cwd: workspacePath,
             stdio: 'inherit',
         });
@@ -309,7 +309,7 @@ test('--no-install', async () => {
     const projectPath = path.join(workspacePath, projectName);
 
     try {
-        await runCli([projectName, '--features=all', '--no-install', '--yes'], {
+        await runCli([projectName, '--features=all', '--no-install', '--defaults'], {
             cwd: workspacePath,
             stdio: 'inherit',
         });
@@ -324,7 +324,7 @@ test('--no-install', async () => {
     }
 });
 
-test('existing dir + --yes => fail', async () => {
+test('existing dir + --defaults => fail', async () => {
     const workspacePath = await createTempWorkspace();
     const projectName = 'existing-dir-app';
     const projectPath = path.join(workspacePath, projectName);
@@ -336,7 +336,7 @@ test('existing dir + --yes => fail', async () => {
         let failedAsExpected = false;
 
         try {
-            await runCli([projectName, '--yes'], {
+            await runCli([projectName, '--defaults'], {
                 cwd: workspacePath,
             });
         } catch (error) {
@@ -349,7 +349,7 @@ test('existing dir + --yes => fail', async () => {
     }
 });
 
-test('existing dir + --yes --overwrite => overwrite', async () => {
+test('existing dir + --defaults --overwrite => overwrite', async () => {
     const workspacePath = await createTempWorkspace();
     const projectName = 'overwrite-overwrite-app';
     const projectPath = path.join(workspacePath, projectName);
@@ -358,7 +358,7 @@ test('existing dir + --yes --overwrite => overwrite', async () => {
         await mkdir(projectPath, { recursive: true });
         await writeFile(path.join(projectPath, 'old.txt'), 'old data', 'utf8');
 
-        await runCli([projectName, '--yes', '--overwrite', '--no-install'], {
+        await runCli([projectName, '--defaults', '--overwrite', '--no-install'], {
             cwd: workspacePath,
             stdio: 'inherit',
         });
@@ -378,7 +378,7 @@ test('README uses selected package manager commands', async () => {
     const projectPath = path.join(workspacePath, projectName);
 
     try {
-        await runCli([projectName, '--features=eslint,stylelint', '--pm=pnpm', '--no-install', '--yes'], {
+        await runCli([projectName, '--features=eslint,stylelint', '--pm=pnpm', '--no-install', '--defaults'], {
             cwd: workspacePath,
             stdio: 'inherit',
         });

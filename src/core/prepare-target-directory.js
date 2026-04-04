@@ -15,7 +15,7 @@ async function pathExists(targetDirPath) {
 export async function prepareTargetDirectory({
     projectName,
     overwrite = false,
-    yes = false,
+    defaults = false,
 }) {
     const targetDirPath = resolve(process.cwd(), projectName);
     const exists = await pathExists(targetDirPath);
@@ -46,7 +46,7 @@ export async function prepareTargetDirectory({
         };
     }
 
-    if (yes) {
+    if (defaults) {
         throw new Error(
             `Directory already exists and is not empty: ${targetDirPath}. Use --overwrite to overwrite it.`,
         );

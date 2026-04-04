@@ -94,8 +94,8 @@ export async function collectProjectInfo(cliArgs = {}) {
     let shouldInstallDependencies = cliArgs.shouldInstallDependencies;
     let packageManager = cliArgs.packageManager;
 
-    if (cliArgs.yes && !projectName) {
-        throw new Error('Project name is required when using --yes');
+    if (cliArgs.defaults && !projectName) {
+        throw new Error('Project name is required when using --defaults');
     }
 
     if (!projectName) {
@@ -113,7 +113,7 @@ export async function collectProjectInfo(cliArgs = {}) {
     }
 
     if (selectedFeatureIds === undefined) {
-        if (cliArgs.yes) {
+        if (cliArgs.defaults) {
             selectedFeatureIds = defaultFeatureIds;
         } else {
             note(
@@ -140,7 +140,7 @@ export async function collectProjectInfo(cliArgs = {}) {
     selectedFeatureIds = normalizeFeatureIds(selectedFeatureIds);
 
     if (!packageManager) {
-        if (cliArgs.yes) {
+        if (cliArgs.defaults) {
             packageManager = defaultPackageManager;
         } else {
             packageManager = handleCancel(await select({
@@ -155,7 +155,7 @@ export async function collectProjectInfo(cliArgs = {}) {
     }
 
     if (shouldInstallDependencies === undefined) {
-        if (cliArgs.yes) {
+        if (cliArgs.defaults) {
             shouldInstallDependencies = true;
         } else {
             shouldInstallDependencies = handleCancel(await confirm({
@@ -174,7 +174,7 @@ export async function collectProjectInfo(cliArgs = {}) {
 
     note(summaryLines.join('\n'), format.sectionTitle('Summary'));
 
-    if (!cliArgs.yes) {
+    if (!cliArgs.defaults) {
         const shouldContinue = handleCancel(await confirm({
             message: 'Continue?',
             initialValue: true,

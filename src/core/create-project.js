@@ -21,7 +21,7 @@ export async function createProject(cliArgs = {}) {
     const { targetDirPath } = await prepareTargetDirectory({
         projectName,
         overwrite: cliArgs.overwrite,
-        yes: cliArgs.yes,
+        defaults: cliArgs.defaults,
     });
 
     const progress = spinner();

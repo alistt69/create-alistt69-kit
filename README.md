@@ -65,7 +65,7 @@ npm create alistt69-kit@latest
 Follow the prompts — or skip them entirely:
 
 ```bash
-npm create alistt69-kit@latest my-app -- --yes
+npm create alistt69-kit@latest my-app -- --defaults
 ```
 
 ## 🛠️  Usage examples
@@ -75,7 +75,7 @@ npm create alistt69-kit@latest my-app -- --yes
 npm create alistt69-kit@latest my-app
 
 # All defaults, no prompts
-npm create alistt69-kit@latest my-app -- --yes
+npm create alistt69-kit@latest my-app -- --defaults
 
 # Skip dependency installation
 npm create alistt69-kit@latest my-app -- --no-install
@@ -90,19 +90,19 @@ npm create alistt69-kit@latest my-app -- --features=all
 npm create alistt69-kit@latest my-app -- --pm pnpm
 
 # Overwrite existing directory
-npm create alistt69-kit@latest my-app -- --yes --overwrite
+npm create alistt69-kit@latest my-app -- --defaults --overwrite
 ```
 
 ## ⚙️ CLI options
 
-| Option | Alias | Description |
-|--------|-------|-------------|
-| `--yes` | `-y` | Skip prompts, use defaults |
-| `--overwrite` | — | Overwrite target directory if it exists |
-| `--no-install` | — | Skip dependency installation |
-| `--features <list>` | — | Enable specific features (`eslint`, `react-router`, `all`) |
-| `--pm <name>` | — | Choose package manager (`npm`, `pnpm`, `yarn`) |
-| `--help` | `-h` | Show help |
+| Option | Alias  | Description |
+|--------|--------|-------------|
+| `--defaults` | `-def` | Skip prompts, use defaults |
+| `--overwrite` | —      | Overwrite target directory if it exists |
+| `--no-install` | —      | Skip dependency installation |
+| `--features <list>` | —      | Enable specific features (`eslint`, `react-router`, `all`) |
+| `--pm <name>` | —      | Choose package manager (`npm`, `pnpm`, `yarn`) |
+| `--help` | `-h`   | Show help |
 
 ## 🧪 Default behavior
 
