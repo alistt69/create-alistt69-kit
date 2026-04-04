@@ -23,7 +23,7 @@
   "author": "alistt69",
   "type": "module",
   "bin": {
-    "create-alistt69-kit": "./bin/index.js"
+    "create-alistt69-kit": "bin/index.js"
   },
   "files": [
     "bin",

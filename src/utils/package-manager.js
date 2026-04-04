@@ -1,9 +1,5 @@
 export const allowedPackageManagers = ['npm', 'pnpm', 'yarn'];
 
-export function isPackageManager(value) {
-    return allowedPackageManagers.includes(value);
-}
-
 export function getInstallCommand(packageManager) {
     if (packageManager === 'yarn') {
         return {

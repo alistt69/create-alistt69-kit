@@ -1,4 +1,5 @@
 import { outro, spinner } from '@clack/prompts';
+import process from 'node:process';
 import { format } from '../utils/console-format.js';
 import { getRunScriptCommand } from '../utils/package-manager.js';
 import { applyFeatures } from './apply-features.js';
@@ -7,6 +8,7 @@ import { copyBaseTemplate } from './copy-base-template.js';
 import { installDependencies } from './install-dependencies.js';
 import { prepareTargetDirectory } from './prepare-target-directory.js';
 import { replaceTokens } from './replace-tokens.js';
+import { restoreSpecialFiles } from './restore-special-files.js';
 
 export async function createProject(cliArgs = {}) {
     const {
@@ -28,6 +30,10 @@ export async function createProject(cliArgs = {}) {
         progress.start('Copying base template...');
         await copyBaseTemplate(targetDirPath);
         progress.stop('Base template copied');
+
+        progress.start('Restoring special files...');
+        await restoreSpecialFiles(targetDirPath);
+        progress.stop('Special files restored');
 
         progress.start('Replacing template tokens...');
         await replaceTokens(targetDirPath, {

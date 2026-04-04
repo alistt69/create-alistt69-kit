@@ -1,4 +1,4 @@
-# create-alistt69-kit
+# _create-alistt69-kit_
 
 > **One command. Zero config fatigue.**  
 > Bootstrap a **React + TypeScript + Webpack** app with a solid starter setup and optional tooling you can enable when you need it.
