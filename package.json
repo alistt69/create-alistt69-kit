@@ -1,0 +1,44 @@
+{
+  "name": "create-alistt69-kit",
+  "version": "0.1.0",
+  "description": "Opinionated React + TypeScript + Webpack project generator by alistt69",
+  "keywords": [
+    "create",
+    "cli",
+    "scaffold",
+    "generator",
+    "react",
+    "typescript",
+    "webpack"
+  ],
+  "homepage": "https://github.com/alistt69/create-alistt69-kit#readme",
+  "bugs": {
+    "url": "https://github.com/alistt69/create-alistt69-kit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alistt69/create-alistt69-kit.git"
+  },
+  "license": "MIT",
+  "author": "alistt69",
+  "type": "module",
+  "bin": {
+    "create-alistt69-kit": "./bin/index.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "node ./bin/index.js",
+    "smoke": "node ./scripts/smoke.mjs"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.10.1"
+  }
+}
