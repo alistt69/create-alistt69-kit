@@ -17,18 +17,18 @@ It generates a ready-to-run **React + TypeScript + Webpack** starter with a prac
 
 ## 🔧  What’s inside
 
-| Tool | Purpose | Included |
-|------|---------|----------|
-| [React](https://react.dev/) | UI library | Default  |
-| [TypeScript](https://www.typescriptlang.org/) | Static typing | Default  |
-| [Webpack](https://webpack.js.org/) | Bundling and build pipeline | Default  |
-| [SCSS Modules](https://github.com/css-modules/css-modules) | Scoped styling | Default  |
-| [SVGR](https://react-svgr.com/) | Import SVGs as React components | Default  |
-| [Webpack Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) | Bundle size inspection | Default  |
+| Tool | Purpose                          | Included |
+|------|----------------------------------|----------|
+| [React](https://react.dev/) | Web framework                    | Default  |
+| [TypeScript](https://www.typescriptlang.org/) | Static typing                    | Default  |
+| [Webpack](https://webpack.js.org/) | Bundling and build pipeline      | Default  |
+| [SCSS Modules](https://github.com/css-modules/css-modules) | Scoped styling                   | Default  |
+| [SVGR](https://react-svgr.com/) | Import SVGs as React components  | Default  |
+| [Webpack Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) | Bundle size inspection           | Default  |
 | [ESLint](https://eslint.org/) + [eslint-stylistic](https://eslint.style/) | Code quality and stylistic rules | Optional |
-| [Stylelint](https://stylelint.io/) | Stylesheet linting | Optional |
-| [Autoprefixer](https://github.com/postcss/autoprefixer) | Automatic CSS vendor prefixes | Optional |
-| [React Router](https://reactrouter.com/) | Client-side routing | Optional |
+| [Stylelint](https://stylelint.io/) | Stylesheet linting               | Optional |
+| [Autoprefixer](https://github.com/postcss/autoprefixer) | Automatic CSS vendor prefixes    | Optional |
+| [React Router](https://reactrouter.com/) | Client-side routing              | Optional |
 
 ---
 
@@ -59,38 +59,38 @@ This starter removes that boilerplate so you can get straight to building.
 Create a new app interactively:
 
 ```bash
-npm create alistt69-kit
+npm create alistt69-kit@latest
 ```
 
 Follow the prompts — or skip them entirely:
 
 ```bash
-npm create alistt69-kit my-app --yes
+npm create alistt69-kit@latest my-app --yes
 ```
 
 ## 🛠️  Usage examples
 
 ```bash
 # Interactive setup
-npm create alistt69-kit my-app
+npm create alistt69-kit@latest my-app
 
 # All defaults, no prompts
-npm create alistt69-kit my-app --yes
+npm create alistt69-kit@latest my-app --yes
 
 # Skip dependency installation
-npm create alistt69-kit my-app --no-install
+npm create alistt69-kit@latest my-app --no-install
 
 # Enable only selected features
-npm create alistt69-kit my-app --features=eslint,react-router
+npm create alistt69-kit@latest my-app --features=eslint,react-router
 
 # Enable all optional features
-npm create alistt69-kit my-app --features=all
+npm create alistt69-kit@latest my-app --features=all
 
 # Use pnpm as package manager
-npm create alistt69-kit my-app --pm pnpm
+npm create alistt69-kit@latest my-app --pm pnpm
 
 # Overwrite existing directory
-npm create alistt69-kit my-app --yes --force
+npm create alistt69-kit@latest my-app --yes --force
 ```
 
 ## ⚙️ CLI options

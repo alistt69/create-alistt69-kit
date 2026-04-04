@@ -7,14 +7,19 @@ import unused from 'eslint-plugin-unused-imports';
 import tseslint from 'typescript-eslint';
 
 export default [
+    // ESLint recommended rules
     js.configs.recommended,
+
+    // Paths to ignore
     {
-        ignores: ['**/dist', '**/node_modules', '**/build', 'webpack.config.ts'],
+        ignores: ['**/dist', '**/node_modules', '**/build', 'webpack.config.ts', 'postcss.config.cjs'],
     },
 
-    // TS base + parser
+    // TypeScript rules
     ...tseslint.configs.recommended,
-    ...tseslint.configs.stylistic, // TS-стилистика
+    ...tseslint.configs.stylistic,
+
+    // TypeScript parser configuration
     {
         files: ['**/*.ts', '**/*.tsx'],
         languageOptions: {
@@ -23,10 +28,10 @@ export default [
         },
     },
 
-    // Глобальные стилевые правила (замена prettier)
-    stylistic.configs['recommended'],
+    // Stylistic rules (Prettier alternative)
+    stylistic.configs.recommended,
 
-    // Реакт / импорты / утиль
+    // Main rule configuration
     {
         plugins: {
             react,
@@ -37,7 +42,7 @@ export default [
         },
         settings: { react: { version: 'detect' } },
         rules: {
-            // ==== БАЗОВОЕ ФОРМАТИРОВАНИЕ (как prettier) ====
+            // === Formatting ===
             '@stylistic/indent': ['error', 4, { SwitchCase: 1 }],
             '@stylistic/semi': ['error', 'always'],
             '@stylistic/quotes': ['error', 'single', { avoidEscape: true }],
@@ -51,16 +56,16 @@ export default [
                 multiline: { delimiter: 'semi', requireLast: true },
                 singleline: { delimiter: 'semi', requireLast: false },
             }],
-            // запрет однострочного return (<JSX/>)
-            // (через строгую трактовку лишних скобок вокруг однострочного выражения)
             '@stylistic/no-extra-parens': 'off',
             '@stylistic/jsx-indent-props': 'off',
             '@stylistic/multiline-ternary': 'off',
 
-            // Пустые строки/пробелы
+            // === Whitespace ===
             'no-trailing-spaces': ['warn', { skipBlankLines: false }],
             'no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 1 }],
             'comma-style': ['error', 'last'],
+
+            // === Line length ===
             'max-len': ['error', {
                 code: 120,
                 tabWidth: 4,
@@ -70,7 +75,7 @@ export default [
                 ignoreTemplateLiterals: true,
             }],
 
-            // Импорты
+            // === Imports ===
             'unused-imports/no-unused-imports': 'warn',
             'unused-imports/no-unused-vars': ['warn', {
                 args: 'after-used',
@@ -94,13 +99,14 @@ export default [
                 alphabetize: { order: 'asc', caseInsensitive: true },
             }],
 
-            // React / JSX
+            // === React ===
             ...react.configs.recommended.rules,
             ...reactHooks.configs.recommended.rules,
-            'react/react-in-jsx-scope': 'off',
-            'react/jsx-uses-react': 'off',
-            'react/prop-types': 'off',
+            'react/react-in-jsx-scope': 'off',      // Not needed in React 17+
+            'react/jsx-uses-react': 'off',          // Not needed in React 17+
+            'react/prop-types': 'off',              // TypeScript handles this
 
+            // === JSX formatting ===
             'react/jsx-indent': ['error', 4],
             'react/jsx-indent-props': ['error', 4],
             'react/jsx-curly-spacing': ['error', { when: 'never', children: true }],
@@ -115,13 +121,13 @@ export default [
             'react/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
             'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
 
-            // Прочее
-            '@typescript-eslint/no-unused-vars': 'off', // перекрываем unused-imports
+            // === General ===
+            '@typescript-eslint/no-unused-vars': 'off', // Handled by unused-imports
             'no-console': ['warn', { allow: ['error'] }],
             'no-restricted-imports': ['error', {
                 name: 'react',
                 importNames: ['default'],
-                message: 'React импортировать не надо (v17+). Удалите import React from "react".',
+                message: 'React import is not needed in React 17+. Remove import React from "react".',
             }],
         },
     },

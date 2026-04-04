@@ -22,8 +22,8 @@ export const eslintFeature = {
         });
 
         await addScripts(projectPath, {
-            lint: 'eslint .',
-            'lint:fix': 'eslint . --fix',
+            lint: 'eslint . --ext .js,.jsx,.ts,.tsx',
+            'lint:fix': 'eslint . --ext .js,.jsx,.ts,.tsx --fix',
         });
 
         const filesDirPath = resolve(currentDirPath, 'files');

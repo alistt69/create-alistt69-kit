@@ -32,6 +32,22 @@ async function readJson(filePath) {
     return JSON.parse(content);
 }
 
+async function readText(filePath) {
+    return readFile(filePath, 'utf8');
+}
+
+function assertIncludes(text, expected, message) {
+    if (!text.includes(expected)) {
+        throw new Error(message ?? `Expected text to include: ${expected}`);
+    }
+}
+
+function assertNotIncludes(text, unexpected, message) {
+    if (text.includes(unexpected)) {
+        throw new Error(message ?? `Expected text not to include: ${unexpected}`);
+    }
+}
+
 async function runCommand(command, args, options = {}) {
     return new Promise((resolvePromise, rejectPromise) => {
         const child = spawn(command, args, {
@@ -132,6 +148,18 @@ test('base only + install + build', async () => {
         assert(!packageJson.devDependencies?.eslint, 'eslint should not be installed in base-only case');
         assert(!packageJson.dependencies?.['react-router-dom'], 'react-router-dom should not be installed in base-only case');
 
+        const readme = await readText(path.join(projectPath, 'README.md'));
+
+        assertIncludes(readme, '# base-only-app', 'README should contain project title');
+        assertIncludes(readme, 'Created with `create-alistt69-kit`.', 'README should contain generator info');
+
+        assertIncludes(readme, '`npm run start`', 'README should contain start script');
+        assertIncludes(readme, '`npm run build`', 'README should contain build script');
+        assertIncludes(readme, '`npm run typecheck`', 'README should contain typecheck script');
+
+        assertNotIncludes(readme, '`npm run lint`', 'README should not contain eslint scripts in base-only case');
+        assertNotIncludes(readme, '`npm run lint:styles`', 'README should not contain stylelint scripts in base-only case');
+
         logStep('building project');
         await runNpmBuild(projectPath);
     } finally {
@@ -163,6 +191,18 @@ test('all features + install + build', async () => {
         await assertFileExists(path.join(projectPath, 'postcss.config.cjs'));
         await assertFileExists(path.join(projectPath, 'src', 'app', 'providers', 'router', 'config', 'router.tsx'));
 
+        const readme = await readText(path.join(projectPath, 'README.md'));
+
+        assertIncludes(readme, '- ESLint + Stylistic', 'README should list eslint feature');
+        assertIncludes(readme, '- Stylelint', 'README should list stylelint feature');
+        assertIncludes(readme, '- Autoprefixer', 'README should list autoprefixer feature');
+        assertIncludes(readme, '- React Router DOM', 'README should list router feature');
+
+        assertIncludes(readme, '`npm run lint`', 'README should contain eslint script');
+        assertIncludes(readme, '`npm run lint:fix`', 'README should contain eslint autofix script');
+        assertIncludes(readme, '`npm run lint:styles`', 'README should contain stylelint script');
+        assertIncludes(readme, '`npm run lint:styles:fix`', 'README should contain stylelint autofix script');
+
         logStep('building project');
         await runNpmBuild(projectPath);
     } finally {
@@ -188,6 +228,15 @@ test('eslint only', async () => {
         assert(!packageJson.devDependencies?.autoprefixer, 'autoprefixer should not be installed');
         assert(!packageJson.dependencies?.['react-router-dom'], 'react-router-dom should not be installed');
 
+        const readme = await readText(path.join(projectPath, 'README.md'));
+
+        assertIncludes(readme, '- ESLint + Stylistic', 'README should list eslint feature');
+        assertIncludes(readme, '`npm run lint`', 'README should contain eslint script');
+        assertIncludes(readme, '`npm run lint:fix`', 'README should contain eslint autofix script');
+
+        assertNotIncludes(readme, '`npm run lint:styles`', 'README should not contain stylelint scripts');
+        assertNotIncludes(readme, '- Stylelint', 'README should not list stylelint feature');
+
         await assertFileExists(path.join(projectPath, 'eslint.config.mjs'));
     } finally {
         await rm(workspacePath, { recursive: true, force: true });
@@ -210,6 +259,15 @@ test('stylelint only', async () => {
         assert(packageJson.devDependencies?.stylelint, 'stylelint should be installed');
         assert(!packageJson.devDependencies?.eslint, 'eslint should not be installed');
 
+        const readme = await readText(path.join(projectPath, 'README.md'));
+
+        assertIncludes(readme, '- Stylelint', 'README should list stylelint feature');
+        assertIncludes(readme, '`npm run lint:styles`', 'README should contain stylelint script');
+        assertIncludes(readme, '`npm run lint:styles:fix`', 'README should contain stylelint autofix script');
+
+        assertNotIncludes(readme, '`npm run lint`', 'README should not contain eslint scripts');
+        assertNotIncludes(readme, '- ESLint + Stylistic', 'README should not list eslint feature');
+
         await assertFileExists(path.join(projectPath, 'stylelint.config.mjs'));
     } finally {
         await rm(workspacePath, { recursive: true, force: true });
@@ -230,6 +288,13 @@ test('react-router only', async () => {
         const packageJson = await readJson(path.join(projectPath, 'package.json'));
 
         assert(packageJson.dependencies?.['react-router-dom'], 'react-router-dom should be installed');
+
+        const readme = await readText(path.join(projectPath, 'README.md'));
+
+        assertIncludes(readme, '- React Router DOM', 'README should list router feature');
+        assertNotIncludes(readme, '`npm run lint`', 'README should not contain eslint scripts');
+        assertNotIncludes(readme, '`npm run lint:styles`', 'README should not contain stylelint scripts');
+
         await assertFileExists(path.join(projectPath, 'src', 'app', 'providers', 'router', 'config', 'router.tsx'));
         await assertFileExists(path.join(projectPath, 'src', 'pages', 'main', 'page.tsx'));
         await assertFileExists(path.join(projectPath, 'src', 'pages', 'error', 'page.tsx'));
@@ -302,6 +367,30 @@ test('existing dir + --yes --force => overwrite', async () => {
 
         assert(!oldFileExists, 'old file should be removed after --force overwrite');
         await assertFileExists(path.join(projectPath, 'package.json'));
+    } finally {
+        await rm(workspacePath, { recursive: true, force: true });
+    }
+});
+
+test('README uses selected package manager commands', async () => {
+    const workspacePath = await createTempWorkspace();
+    const projectName = 'pm-readme-app';
+    const projectPath = path.join(workspacePath, projectName);
+
+    try {
+        await runCli([projectName, '--features=eslint,stylelint', '--pm=pnpm', '--no-install', '--yes'], {
+            cwd: workspacePath,
+            stdio: 'inherit',
+        });
+
+        const readme = await readText(path.join(projectPath, 'README.md'));
+
+        assertIncludes(readme, '`pnpm start`', 'README should use pnpm for start');
+        assertIncludes(readme, '`pnpm build`', 'README should use pnpm for build');
+        assertIncludes(readme, '`pnpm lint`', 'README should use pnpm for eslint');
+        assertIncludes(readme, '`pnpm lint:styles`', 'README should use pnpm for stylelint');
+
+        assertNotIncludes(readme, '`npm run lint`', 'README should not use npm commands when pnpm is selected');
     } finally {
         await rm(workspacePath, { recursive: true, force: true });
     }
