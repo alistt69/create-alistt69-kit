@@ -65,7 +65,7 @@ npm create alistt69-kit@latest
 Follow the prompts — or skip them entirely:
 
 ```bash
-npm create alistt69-kit@latest my-app --yes
+npm create alistt69-kit@latest my-app -- --yes
 ```
 
 ## 🛠️  Usage examples
@@ -75,22 +75,22 @@ npm create alistt69-kit@latest my-app --yes
 npm create alistt69-kit@latest my-app
 
 # All defaults, no prompts
-npm create alistt69-kit@latest my-app --yes
+npm create alistt69-kit@latest my-app -- --yes
 
 # Skip dependency installation
-npm create alistt69-kit@latest my-app --no-install
+npm create alistt69-kit@latest my-app -- --no-install
 
 # Enable only selected features
-npm create alistt69-kit@latest my-app --features=eslint,react-router
+npm create alistt69-kit@latest my-app -- --features=eslint,react-router
 
 # Enable all optional features
-npm create alistt69-kit@latest my-app --features=all
+npm create alistt69-kit@latest my-app -- --features=all
 
 # Use pnpm as package manager
-npm create alistt69-kit@latest my-app --pm pnpm
+npm create alistt69-kit@latest my-app -- --pm pnpm
 
 # Overwrite existing directory
-npm create alistt69-kit@latest my-app --yes --overwrite
+npm create alistt69-kit@latest my-app -- --yes --overwrite
 ```
 
 ## ⚙️ CLI options
