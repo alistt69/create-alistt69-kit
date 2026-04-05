@@ -1,13 +1,32 @@
-import { Link, Outlet } from 'react-router-dom';
+import clsx from 'clsx';
+import { NavLink, Outlet } from 'react-router-dom';
+import styles from './styles.module.scss';
 
 export default function AppLayout() {
     return (
-        <div>
-            <header>
+        <div className={styles.layout_wrapper}>
+            <aside className={styles.sidebar}>
                 <nav>
-                    <Link to="/">Home</Link>
+                    <NavLink
+                        className={({ isActive }) => clsx({
+                            [styles.active]: isActive,
+                        })}
+                        to="/"
+                    >
+                        Main
+                    </NavLink>
                 </nav>
-            </header>
+                <nav>
+                    <NavLink
+                        className={({ isActive }) => clsx({
+                            [styles.active]: isActive,
+                        })}
+                        to="/error-route"
+                    >
+                        Error
+                    </NavLink>
+                </nav>
+            </aside>
 
             <main>
                 <Outlet />

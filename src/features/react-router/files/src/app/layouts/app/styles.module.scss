@@ -1,0 +1,19 @@
+.layout_wrapper {
+    display: flex;
+    justify-content: space-between;
+    min-width: 210px;
+
+    .sidebar > nav > a {
+        opacity: .7;
+        color: inherit;
+        transition: opacity .2s ease;
+
+        &.active {
+            opacity: 1;
+        }
+    }
+
+    h2 {
+        margin: 0;
+    }
+}

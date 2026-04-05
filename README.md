@@ -1,13 +1,20 @@
-# _create-alistt69-kit_
-
-> **One command. Zero config fatigue.**  
-> Bootstrap a **React + TypeScript + Webpack** app with a solid starter setup and optional tooling you can enable when you need it.
-
-[![npm version](https://img.shields.io/npm/v/create-alistt69-kit.svg)](https://www.npmjs.com/package/create-alistt69-kit)
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.18-brightgreen)](https://nodejs.org/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-
----
+<div style="display: flex; align-items: center; gap: 30px;">
+  <div style="flex-shrink: 0;">
+    <img src="./assets/create-alistt69-kit-logo.svg" alt="Logo" width="160" height="160" style="margin-top: 16px;"/>
+  </div>
+  <div>
+    <h1 style="margin: 0;">create-alistt69-kit</h1>
+    <blockquote style="margin: 10px 0;">
+      <strong>One command. Zero config fatigue.</strong><br/>
+      Bootstrap a <strong>React + TypeScript + Webpack</strong> app with a solid starter setup and optional tooling you can enable when you need it.
+    </blockquote>
+    <p>
+      <a href="https://www.npmjs.com/package/create-alistt69-kit"><img src="https://img.shields.io/npm/v/create-alistt69-kit.svg" alt="npm version"/></a>
+      <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/node-%3E%3D18.18-brightgreen" alt="Node.js Version"/></a>
+      <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"/></a>
+    </p>
+  </div>
+</div>
 
 ## ✨ Overview
 

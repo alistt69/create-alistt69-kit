@@ -1,7 +1,7 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
-import AppLayout from '../../../layouts/app';
-import { Main } from '../../../../pages/main';
 import { Error } from '../../../../pages/error';
+import { Main } from '../../../../pages/main';
+import AppLayout from '../../../layouts/app';
 
 export const appRouter = createBrowserRouter(
     createRoutesFromElements(
