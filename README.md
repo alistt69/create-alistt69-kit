@@ -1,9 +1,9 @@
-<table width="100%" style="border: none; padding: 0; margin: 0">
-  <tr style="border: none; padding: 0; margin: 0">
-    <td width="190" align="center" style="border: none; padding: 0; margin: 0">
+<table width="100%">
+  <tr>
+    <td width="190" align="center">
       <img src="./assets/create-alistt69-kit-logo.svg" alt="Logo" width="170" height="170" style="margin-top: 50px;" />
     </td>
-    <td style="border: none; padding: 10; margin: 0">
+    <td>
       <h1>create-alistt69-kit</h1>
 
 > **One command. Zero config fatigue.**  
