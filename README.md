@@ -1,20 +1,20 @@
-<div style="display: flex; align-items: center; gap: 30px;">
-  <div style="flex-shrink: 0;">
-    <img src="./assets/create-alistt69-kit-logo.svg" alt="Logo" width="160" height="160" style="margin-top: 16px;"/>
-  </div>
-  <div>
-    <h1 style="margin: 0;">create-alistt69-kit</h1>
-    <blockquote style="margin: 10px 0;">
-      <strong>One command. Zero config fatigue.</strong><br/>
-      Bootstrap a <strong>React + TypeScript + Webpack</strong> app with a solid starter setup and optional tooling you can enable when you need it.
-    </blockquote>
-    <p>
-      <a href="https://www.npmjs.com/package/create-alistt69-kit"><img src="https://img.shields.io/npm/v/create-alistt69-kit.svg" alt="npm version"/></a>
-      <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/node-%3E%3D18.18-brightgreen" alt="Node.js Version"/></a>
-      <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"/></a>
-    </p>
-  </div>
-</div>
+<table width="100%" style="border: none; padding: 0; margin: 0">
+  <tr style="border: none; padding: 0; margin: 0">
+    <td width="190" align="center" style="border: none; padding: 0; margin: 0">
+      <img src="./assets/create-alistt69-kit-logo.svg" alt="Logo" width="170" height="170" style="margin-top: 50px;" />
+    </td>
+    <td style="border: none; padding: 10; margin: 0">
+      <h1>create-alistt69-kit</h1>
+
+> **One command. Zero config fatigue.**  
+> Bootstrap a **React + TypeScript + Webpack** app with a solid starter setup and optional tooling you can enable when you need it.
+
+[![npm version](https://img.shields.io/npm/v/create-alistt69-kit.svg)](https://www.npmjs.com/package/create-alistt69-kit)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.18-brightgreen)](https://nodejs.org/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+</td>
+  </tr>
+</table>
 
 ## ✨ Overview
 
