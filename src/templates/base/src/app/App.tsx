@@ -1,6 +1,10 @@
+import styles from './styles.module.scss';
+
 function App() {
     return (
-        <h1>alistt69</h1>
+        <div className={styles.app_wrapper}>
+            alistt69
+        </div>
     )
 }
 
