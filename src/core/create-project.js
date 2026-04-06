@@ -56,6 +56,7 @@ export async function createProject(cliArgs = {}) {
             projectName,
             selectedFeatureIds,
             packageManager,
+            shouldInstallDependencies,
         });
         progress.stop('README generated');
 

@@ -33,7 +33,7 @@
   ],
   "scripts": {
     "dev": "node ./bin/index.js",
-    "smoke": "node ./scripts/smoke.mjs"
+    "smoke": "node ./scripts/smoke/index.mjs"
   },
   "engines": {
     "node": ">=18.18.0"

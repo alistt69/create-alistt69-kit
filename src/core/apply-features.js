@@ -8,7 +8,7 @@ export async function applyFeatures({ projectPath, selectedFeatureIds }) {
             throw new Error(`Unknown feature: ${featureId}`);
         }
 
-        await feature.apply({
+        await feature.applyFeature({
             projectPath,
         });
     }

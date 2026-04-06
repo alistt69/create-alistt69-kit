@@ -13,3 +13,13 @@ export const features = [
 export const featuresById = new Map(
     features.map((feature) => [feature.id, feature]),
 );
+
+export const featurePromptOptions = features.map((feature) => ({
+    value: feature.id,
+    label: feature.title,
+    hint: feature.hint,
+}));
+
+export const defaultFeatureIds = features.map((feature) => feature.id);
+
+export const availableFeatureIdSet = new Set(defaultFeatureIds);

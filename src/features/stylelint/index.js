@@ -1,29 +1,24 @@
-import { cp } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { addDevDependencies, addScripts } from '../../utils/package-json.js';
+
+import { defineFeature } from '../define-feature.js';
 
 const currentFilePath = fileURLToPath(import.meta.url);
 const currentDirPath = dirname(currentFilePath);
 
-export const stylelintFeature = {
+export const stylelintFeature = defineFeature({
     id: 'stylelint',
     title: 'Stylelint',
-    apply: async ({ projectPath }) => {
-        await addDevDependencies(projectPath, {
+    hint: 'SCSS/CSS linting',
+    packageJson: {
+        devDependencies: {
             stylelint: '^17.6.0',
             'stylelint-config-standard-scss': '^17.0.0',
-        });
-
-        await addScripts(projectPath, {
+        },
+        scripts: {
             'lint:styles': 'stylelint "src/**/*.{scss,css}"',
             'lint:styles:fix': 'stylelint "src/**/*.{scss,css}" --fix',
-        });
-
-        const filesDirPath = resolve(currentDirPath, 'files');
-
-        await cp(filesDirPath, projectPath, {
-            recursive: true,
-        });
+        },
     },
-};
+    copyFiles: resolve(currentDirPath, 'files'),
+});

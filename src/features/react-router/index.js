@@ -1,23 +1,19 @@
-import { cp } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { addDependencies } from '../../utils/package-json.js';
+
+import { defineFeature } from '../define-feature.js';
 
 const currentFilePath = fileURLToPath(import.meta.url);
 const currentDirPath = dirname(currentFilePath);
 
-export const reactRouterFeature = {
+export const reactRouterFeature = defineFeature({
     id: 'react-router',
     title: 'React Router DOM',
-    apply: async ({ projectPath }) => {
-        await addDependencies(projectPath, {
+    hint: 'Routing + FSD-like app/pages/shared',
+    packageJson: {
+        dependencies: {
             'react-router-dom': '^7.13.2',
-        });
-
-        const filesDirPath = resolve(currentDirPath, 'files');
-
-        await cp(filesDirPath, projectPath, {
-            recursive: true,
-        });
+        },
     },
-};
+    copyFiles: resolve(currentDirPath, 'files'),
+});

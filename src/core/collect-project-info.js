@@ -9,35 +9,11 @@ import {
     text,
 } from '@clack/prompts';
 import process from 'node:process';
+import { defaultFeatureIds, featurePromptOptions, availableFeatureIdSet } from '../features/index.js';
 import { format } from '../utils/console-format.js';
 import { allowedPackageManagers } from '../utils/package-manager.js';
 
-const availableFeatures = [
-    {
-        value: 'eslint',
-        label: 'ESLint + Stylistic',
-        hint: 'JS/TS/React linting',
-    },
-    {
-        value: 'stylelint',
-        label: 'Stylelint',
-        hint: 'SCSS/CSS linting',
-    },
-    {
-        value: 'autoprefixer',
-        label: 'Autoprefixer',
-        hint: 'PostCSS vendor prefixes',
-    },
-    {
-        value: 'react-router',
-        label: 'React Router DOM',
-        hint: 'Routing + FSD-like app/pages/shared',
-    },
-];
-
-const defaultFeatureIds = availableFeatures.map((feature) => feature.value);
 const defaultPackageManager = 'npm';
-const availableFeatureIdSet = new Set(defaultFeatureIds);
 
 function handleCancel(value) {
     if (!isCancel(value)) {
@@ -130,7 +106,7 @@ export async function collectProjectInfo(cliArgs = {}) {
 
             selectedFeatureIds = handleCancel(await multiselect({
                 message: 'Remove unnecessary features',
-                options: availableFeatures,
+                options: featurePromptOptions,
                 initialValues: defaultFeatureIds,
                 required: false,
             }));
