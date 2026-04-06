@@ -10,7 +10,7 @@ export function getInstallCommand(packageManager) {
 
     return {
         command: packageManager,
-        args: ['install', ' --verbose'],
+        args: ['install'],
     };
 }
 
