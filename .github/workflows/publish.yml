@@ -5,27 +5,34 @@ on:
     tags:
       - 'v*'
 
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   publish:
+    name: Publish package
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
 
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout
+        uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
         with:
-          node-version: '24'
+          node-version: 24
           registry-url: 'https://registry.npmjs.org'
           cache: npm
 
-      - run: node --version
-      - run: npm --version
+      - name: Install dependencies
+        run: npm ci
 
-      - run: npm ci
-      - run: npm run smoke
+      - name: Run smoke tests
+        run: npm run smoke
 
       - name: Verify tag matches package version
         run: |
@@ -37,4 +44,5 @@ jobs:
             exit 1
           fi
 
-      - run: npm publish --access public
+      - name: Publish to npm
+        run: npm publish --access public
