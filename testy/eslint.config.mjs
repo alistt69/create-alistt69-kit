@@ -102,9 +102,9 @@ export default [
             // === React ===
             ...react.configs.recommended.rules,
             ...reactHooks.configs.recommended.rules,
-            'react/react-in-jsx-scope': 'off',      // Not needed in React 17+
-            'react/jsx-uses-react': 'off',          // Not needed in React 17+
-            'react/prop-types': 'off',              // TypeScript handles this
+            'react/react-in-jsx-scope': 'off', // Not needed in React 17+
+            'react/jsx-uses-react': 'off', // Not needed in React 17+
+            'react/prop-types': 'off', // TypeScript handles this
 
             // === JSX formatting ===
             'react/jsx-indent': ['error', 4],
@@ -125,9 +125,13 @@ export default [
             '@typescript-eslint/no-unused-vars': 'off', // Handled by unused-imports
             'no-console': ['warn', { allow: ['error'] }],
             'no-restricted-imports': ['error', {
-                name: 'react',
-                importNames: ['default'],
-                message: 'React import is not needed in React 17+. Remove import React from "react".',
+                paths: [
+                    {
+                        name: 'react',
+                        importNames: ['default'],
+                        message: 'React import is not needed in React 17+. Remove import React from "react".',
+                    },
+                ],
             }],
         },
     },
