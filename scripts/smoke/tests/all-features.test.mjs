@@ -28,7 +28,7 @@ defineTest(
             await assertFileExists(path.join(projectPath, 'stylelint.config.mjs'));
             await assertFileExists(path.join(projectPath, 'postcss.config.cjs'));
             await assertFileExists(
-                path.join(projectPath, 'src', 'app', 'providers', 'router', 'config', 'router.tsx'),
+                path.join(projectPath, 'src', 'app', 'providers', 'router', 'lib', 'router', 'index.tsx'),
             );
 
             const readme = await readText(path.join(projectPath, 'README.md'));

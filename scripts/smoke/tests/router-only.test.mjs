@@ -26,7 +26,7 @@ defineTest(
             assertNotIncludes(readme, '`npm run lint:styles`', 'README should not contain stylelint scripts');
 
             await assertFileExists(
-                path.join(projectPath, 'src', 'app', 'providers', 'router', 'config', 'router.tsx'),
+                path.join(projectPath, 'src', 'app', 'providers', 'router', 'lib', 'router', 'index.tsx'),
             );
             await assertFileExists(path.join(projectPath, 'src', 'pages', 'main', 'page.tsx'));
             await assertFileExists(path.join(projectPath, 'src', 'pages', 'error', 'page.tsx'));
