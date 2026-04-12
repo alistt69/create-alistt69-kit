@@ -14,6 +14,9 @@ export const reactRouterFeature = defineFeature({
         dependencies: {
             'react-router-dom': '^7.13.2',
         },
+        scripts: {
+            'generate:page': 'node ./scripts/generate/page.mjs',
+        },
     },
     copyFiles: resolve(currentDirPath, 'files'),
 });

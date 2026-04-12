@@ -1,5 +1,6 @@
 export enum ERoutePath {
     MAIN = '',
+    // @route-enum
     ERROR = '*',
 }
 

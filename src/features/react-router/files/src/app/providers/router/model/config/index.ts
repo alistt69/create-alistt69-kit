@@ -5,4 +5,5 @@ export const routesConfig: Record<Exclude<ERoutePath, ERoutePath.ERROR>, IRouteC
         path: ERoutePath.MAIN,
         title: 'Main',
     },
+    // @route-config
 };

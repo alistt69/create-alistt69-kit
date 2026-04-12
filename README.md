@@ -55,6 +55,41 @@ This starter removes that boilerplate so you can get straight to building.
 
 ---
 
+## ⚡ Generated project helpers
+
+Some optional features also add local project generators to the scaffolded app.
+
+### Page generator
+
+When `React Router DOM` is enabled, the project includes a built-in page generator.
+
+```bash
+npm run generate:page about
+```
+This will create:
+
+* `src/pages/about/index.ts`
+* `src/pages/about/lazy.ts`
+* `src/pages/about/page.tsx`
+
+If the standard router files are present, the generator will also register the page automatically in:
+
+* `src/app/providers/router/types/index.ts`
+* `src/app/providers/router/model/config/index.ts`
+* `src/app/providers/router/model/router/index.tsx`
+
+You can also configure custom paths in `scripts/generate/page.mjs`:
+* `ROUTER_TYPES_PATH`
+* `ROUTER_CONFIG_PATH`
+* `ROUTER_FILE_PATH`
+
+#### Important
+
+Route auto-registration relies on special marker comments `@route-...` inside the router files.
+Do not remove these markers unless you also want to disable automatic updates.
+
+---
+
 ## 📦 Requirements
 
 - **Node.js** `18.18` or higher

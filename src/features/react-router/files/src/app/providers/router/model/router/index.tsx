@@ -1,7 +1,9 @@
 import { ComponentType, ReactNode } from 'react';
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import { ERoutePath } from '../../types';
 import { Error } from '../../../../../pages/error';
 import { Main } from '../../../../../pages/main';
+/* @route-imports */
 import AppLayout from '../../ui/app';
 
 export const getRouter = (ErrorBoundary: ComponentType<{ children: ReactNode }>) => createBrowserRouter(
@@ -15,7 +17,8 @@ export const getRouter = (ErrorBoundary: ComponentType<{ children: ReactNode }>)
             )}
         >
             <Route index element={<Main />} />
-            <Route path="*" element={<Error />} />
+            {/* @route-routes */}
+            <Route path={ERoutePath.ERROR} element={<Error />} />
         </Route>,
     ),
 );

@@ -23,6 +23,7 @@ defineTest(
             assert(packageJson.devDependencies?.stylelint, 'stylelint should be installed');
             assert(packageJson.devDependencies?.autoprefixer, 'autoprefixer should be installed');
             assert(packageJson.dependencies?.['react-router-dom'], 'react-router-dom should be installed');
+            assert(packageJson.scripts?.['generate:page'], 'generate:page script should be added');
 
             await assertFileExists(path.join(projectPath, 'eslint.config.mjs'));
             await assertFileExists(path.join(projectPath, 'stylelint.config.mjs'));
@@ -40,6 +41,8 @@ defineTest(
             assertIncludes(readme, '`npm run lint:fix`', 'README should contain eslint autofix script');
             assertIncludes(readme, '`npm run lint:styles`', 'README should contain stylelint script');
             assertIncludes(readme, '`npm run lint:styles:fix`', 'README should contain stylelint autofix script');
+            assertIncludes(readme, '`npm run generate:page`', 'README should contain page generator script');
+            assertIncludes(readme, '## Page generator', 'README should contain page generator section');
 
             step('building project');
             await runNpmBuild(projectPath, { verbose });

@@ -49,6 +49,7 @@ const scriptDescriptions = {
     'lint:fix': 'Run ESLint with autofix',
     'lint:styles': 'Run Stylelint',
     'lint:styles:fix': 'Run Stylelint with autofix',
+    'generate:page': 'Generate a new page and auto-register it in the router when available',
 };
 
 function formatMarkdownList(items, fallback = '- None') {
@@ -128,14 +129,50 @@ function formatQuickStart({
     ].join('\n');
 }
 
-function formatProjectStructure() {
-    return [
+function formatProjectStructure(selectedFeatureIds) {
+    const items = [
         '- `public/` — static assets and HTML template',
         '- `src/` — application source code',
         '- `src/app/` — app bootstrap, providers, entry-level setup',
         '- `src/styles/` — global styles and shared styling layer',
         '- `config/build/` — split webpack configuration',
-    ].join('\n');
+    ];
+
+    if (selectedFeatureIds.includes('react-router')) {
+        items.splice(3, 0, '- `src/pages/` — route-level pages');
+    }
+
+    return items.join('\n');
+}
+
+function formatFeatureSpecificSections({ selectedFeatureIds, packageManager }) {
+    const sections = [];
+
+    if (selectedFeatureIds.includes('react-router')) {
+        sections.push([
+            '## Page generator',
+            '',
+            'When `React Router DOM` is enabled, you can scaffold a new page with one command.',
+            '',
+            '```bash',
+            `${getRunScriptCommand(packageManager, 'generate:page')} -- about`,
+            '```',
+            '',
+            'This creates:',
+            '',
+            '- `src/pages/about/index.ts`',
+            '- `src/pages/about/lazy.ts`',
+            '- `src/pages/about/page.tsx`',
+            '',
+            'If the standard router files are still present, the generator also updates:',
+            '',
+            '- `src/app/providers/router/types/index.ts`',
+            '- `src/app/providers/router/model/config/index.ts`',
+            '- `src/app/providers/router/model/router/index.tsx`',
+        ].join('\n'));
+    }
+
+    return sections.join('\n\n');
 }
 
 export async function renderProjectReadme({
@@ -146,6 +183,10 @@ export async function renderProjectReadme({
                                               shouldInstallDependencies,
                                           }) {
     const packageJson = await readPackageJson(projectPath);
+    const featureSpecificSections = formatFeatureSpecificSections({
+        selectedFeatureIds,
+        packageManager,
+    });
 
     const readmeContent = [
         `# ${projectName}`,
@@ -174,11 +215,12 @@ export async function renderProjectReadme({
         '',
         '## Project structure',
         '',
-        formatProjectStructure(),
+        formatProjectStructure(selectedFeatureIds),
         '',
         '## Available scripts',
         '',
         formatScripts(packageManager, packageJson.scripts ?? {}),
+        ...(featureSpecificSections ? ['', featureSpecificSections] : []),
     ].join('\n');
 
     await writeFile(
