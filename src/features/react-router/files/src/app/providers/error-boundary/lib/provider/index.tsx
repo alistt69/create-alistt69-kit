@@ -1,14 +1,14 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
 import ErrorScreen from '../../ui/error-screen';
 
-type ErrorBoundaryProps = {
+interface ErrorBoundaryProps {
     children: ReactNode;
-};
+}
 
-type ErrorBoundaryState = {
+interface ErrorBoundaryState {
     hasError: boolean;
     error: Error | null;
-};
+}
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     constructor(props: ErrorBoundaryProps) {

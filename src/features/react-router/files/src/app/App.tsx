@@ -3,10 +3,10 @@ import Logo from '../../public/create-alistt69-kit-logo.svg';
 import styles from './styles.module.scss';
 
 interface AppProps {
-    children: ReactNode;
+    router: ReactNode;
 }
 
-function App({ children }: AppProps) {
+function App({ router }: AppProps) {
     return (
         <div className={styles.app_wrapper}>
             <div className={styles.created_by_section}>
@@ -15,7 +15,7 @@ function App({ children }: AppProps) {
                     created by create-alistt69-kit
                 </p>
             </div>
-            {children}
+            {router}
         </div>
     );
 }

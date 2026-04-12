@@ -1,9 +1,9 @@
-type ErrorScreenProps = {
+interface ErrorScreenProps {
     title?: string;
     description?: string;
     errorMessage?: string;
     onRetry?: () => void;
-};
+}
 
 function ErrorScreen({
     title = 'Something went wrong',

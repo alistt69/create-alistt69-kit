@@ -102,9 +102,10 @@ export default [
             // === React ===
             ...react.configs.recommended.rules,
             ...reactHooks.configs.recommended.rules,
-            'react/react-in-jsx-scope': 'off',      // Not needed in React 17+
-            'react/jsx-uses-react': 'off',          // Not needed in React 17+
-            'react/prop-types': 'off',              // TypeScript handles this
+            'react/react-in-jsx-scope': 'off', // Not needed in React 17+
+            'react/jsx-uses-react': 'off', // Not needed in React 17+
+            'react/prop-types': 'off', // TypeScript handles this
+            'react-hooks/set-state-in-effect': 'warn',
 
             // === JSX formatting ===
             'react/jsx-indent': ['error', 4],

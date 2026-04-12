@@ -1,0 +1,36 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  border: none;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  color: inherit;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+}
+
+input,
+button,
+textarea {
+  font-size: inherit;
+  font-family: inherit;
+
+  &::placeholder {
+    user-select: none;
+  }
+}
+
+button {
+  user-select: none;
+  cursor: pointer;
+}
+
+img {
+  user-select: none;
+}

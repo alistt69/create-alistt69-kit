@@ -1,10 +1,21 @@
-import { RouterProvider } from 'react-router-dom';
-import { router } from '../router';
+import { ComponentType, ReactNode, useMemo } from 'react';
+import { RouterProvider as RouterDomProvider } from 'react-router-dom';
+import { getRouter } from '../../model/router';
 
-function Router() {
+interface RouterProviderProps {
+    errorBoundary: ComponentType<{ children: ReactNode }>;
+}
+
+function RouterProvider({ errorBoundary }: RouterProviderProps) {
+    const router = useMemo(() => (
+        getRouter(errorBoundary)
+    ), [errorBoundary]);
+
     return (
-        <RouterProvider router={router} />
+        <RouterDomProvider
+            router={router}
+        />
     );
 }
 
-export default Router;
+export default RouterProvider;
