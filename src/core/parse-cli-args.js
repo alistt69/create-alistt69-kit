@@ -28,7 +28,7 @@ export function formatHelpMessage() {
         '  create-alistt69-kit <project-name> [options]',
         '',
         'Options:',
-        '  -def, --defaults                    Skip prompts and use defaults',
+        '  -def, --defaults             Skip prompts and use defaults',
         '  --overwrite                  Overwrite target directory if it exists',
         '  --no-install                 Do not install dependencies',
         '  --features <comma-list>      Example: eslint,stylelint,react-router',

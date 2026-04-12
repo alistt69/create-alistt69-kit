@@ -106,10 +106,10 @@ function formatScripts(packageManager, scripts) {
 }
 
 function formatQuickStart({
-                              projectName,
-                              packageManager,
-                              shouldInstallDependencies,
-                          }) {
+    projectName,
+    packageManager,
+    shouldInstallDependencies,
+}) {
     const steps = [`cd ${projectName}`];
 
     if (!shouldInstallDependencies) {
@@ -155,7 +155,7 @@ function formatFeatureSpecificSections({ selectedFeatureIds, packageManager }) {
             'When `React Router DOM` is enabled, you can scaffold a new page with one command.',
             '',
             '```bash',
-            `${getRunScriptCommand(packageManager, 'generate:page')} -- about`,
+            `${getRunScriptCommand(packageManager, 'generate:page')} about`,
             '```',
             '',
             'This creates:',
@@ -176,12 +176,12 @@ function formatFeatureSpecificSections({ selectedFeatureIds, packageManager }) {
 }
 
 export async function renderProjectReadme({
-                                              projectPath,
-                                              projectName,
-                                              selectedFeatureIds,
-                                              packageManager,
-                                              shouldInstallDependencies,
-                                          }) {
+    projectPath,
+    projectName,
+    selectedFeatureIds,
+    packageManager,
+    shouldInstallDependencies,
+}) {
     const packageJson = await readPackageJson(projectPath);
     const featureSpecificSections = formatFeatureSpecificSections({
         selectedFeatureIds,
