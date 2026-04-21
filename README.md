@@ -1,7 +1,7 @@
 <table width="100%">
   <tr>
     <td width="190" align="center">
-      <img src="./assets/create-alistt69-kit-logo.svg" alt="Logo" width="170" height="170" style="margin-top: 50px;" />
+      <img src="assets/alistt69-packages-logo.svg" alt="Logo" width="170" height="170" style="margin-top: 50px;" />
     </td>
     <td>
       <h1>create-alistt69-kit</h1>
