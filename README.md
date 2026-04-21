@@ -53,8 +53,6 @@ Setting up a frontend project from scratch usually means repeating the same stuf
 
 This starter removes that boilerplate so you can get straight to building.
 
----
-
 ## ⚡ Generated project helpers
 
 Some optional features also add local project generators to the scaffolded app.
@@ -88,14 +86,10 @@ You can also configure custom paths in `scripts/generate/page.mjs`:
 Route auto-registration relies on special marker comments `@route-...` inside the router files.
 Do not remove these markers unless you also want to disable automatic updates.
 
----
-
 ## 📦 Requirements
 
 - **Node.js** `18.18` or higher
 - **npm**, **pnpm**, or **yarn**
-
----
 
 ## 🔥 Quick start
 
@@ -156,3 +150,5 @@ npm create alistt69-kit@latest my-app -- --defaults --overwrite
 ## 📄 License
 
 MIT — free and open for everyone.
+
+_See [LICENSE](./LICENSE)._
