@@ -59,7 +59,7 @@ defineTest(
             assertIncludes(routerFile, '{/* @route-routes */}', 'router marker should remain in place');
 
             assertIncludes(readme, '## Page generator', 'generated README should document page generator');
-            console.log(readme)
+
             assertIncludes(
                 readme,
                 'npm run generate:page about',
