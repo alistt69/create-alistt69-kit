@@ -11,6 +11,7 @@
 
 [![npm version](https://img.shields.io/npm/v/create-alistt69-kit.svg)](https://www.npmjs.com/package/create-alistt69-kit)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.18-brightgreen)](https://nodejs.org/)
+[![npm downloads](https://img.shields.io/npm/dw/create-alistt69-kit.svg)](https://www.npmjs.com/package/create-alistt69-kit)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![CI](https://github.com/alistt69/create-alistt69-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/alistt69/create-alistt69-kit/actions/workflows/ci.yml)
 </td>
