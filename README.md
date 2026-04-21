@@ -40,8 +40,6 @@ It generates a ready-to-run **React + TypeScript + Webpack** starter with a prac
 | [React Router](https://reactrouter.com/) | Client-side routing              | Optional |
 | [Puppeteer](https://pptr.dev/) + [serve-handler](https://github.com/vercel/serve-handler) | Static HTML prerender after production build | Optional |
 
----
-
 ## 🎯 Why use it?
 
 Setting up a frontend project from scratch usually means repeating the same stuff every time:
@@ -105,6 +103,7 @@ export default async function getPrerenderRoutes() {
     return [
         '/',
         '/about',
+        // @prerender-routes
     ];
 }
 ```
