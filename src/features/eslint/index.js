@@ -2,6 +2,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { defineFeature } from '../define-feature.js';
+import { appendAgentsSection } from '../../utils/agents-md.js';
 
 const currentFilePath = fileURLToPath(import.meta.url);
 const currentDirPath = dirname(currentFilePath);
@@ -27,4 +28,17 @@ export const eslintFeature = defineFeature({
         },
     },
     copyFiles: resolve(currentDirPath, 'files'),
+    async apply({ projectPath }) {
+        await appendAgentsSection(
+            projectPath,
+            'eslint',
+            `
+                ## ESLint
+                
+                - Lint code with \`npm run lint\`.
+                - Apply safe autofixes with \`npm run lint:fix\`.
+                - Prefer fixing root-cause issues instead of disabling rules.
+            `,
+        );
+    },
 });

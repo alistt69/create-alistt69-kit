@@ -2,6 +2,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { defineFeature } from '../define-feature.js';
+import { appendAgentsSection } from '../../utils/agents-md.js';
 
 const currentFilePath = fileURLToPath(import.meta.url);
 const currentDirPath = dirname(currentFilePath);
@@ -21,4 +22,17 @@ export const stylelintFeature = defineFeature({
         },
     },
     copyFiles: resolve(currentDirPath, 'files'),
+    async apply({ projectPath }) {
+        await appendAgentsSection(
+            projectPath,
+            'stylelint',
+            `
+                ## Stylelint
+                
+                - Lint styles with \`npm run lint:styles\`.
+                - Apply autofixes with \`npm run lint:styles:fix\`.
+                - Keep styles compatible with the existing SCSS modules setup.
+            `,
+        );
+    },
 });

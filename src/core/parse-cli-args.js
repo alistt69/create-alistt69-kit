@@ -31,7 +31,7 @@ export function formatHelpMessage() {
         '  -def, --defaults             Skip prompts and use defaults',
         '  --overwrite                  Overwrite target directory if it exists',
         '  --no-install                 Do not install dependencies',
-        '  --features <comma-list>      Example: eslint,stylelint,react-router,prerender',
+        '  --features <comma-list>      Example: agents-md,eslint,stylelint,react-router,prerender',
         '  --features all               Enable all features',
         '  --pm <npm|pnpm|yarn>         Package manager',
         '  -h, --help                   Show help',

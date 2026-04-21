@@ -38,6 +38,7 @@ It generates a ready-to-run **React + TypeScript + Webpack** starter with a prac
 | [Stylelint](https://stylelint.io/) | Stylesheet linting               | Optional |
 | [Autoprefixer](https://github.com/postcss/autoprefixer) | Automatic CSS vendor prefixes    | Optional |
 | [React Router](https://reactrouter.com/) | Client-side routing              | Optional |
+| [AGENTS.md](https://agents.md/) | Root instructions file for AI coding agents | Optional |
 | [Puppeteer](https://pptr.dev/) + [serve-handler](https://github.com/vercel/serve-handler) | Static HTML prerender after production build | Optional |
 
 ## 🎯 Why use it?
@@ -166,14 +167,14 @@ npm create alistt69-kit@latest my-app -- --defaults --overwrite
 
 ## ⚙️ CLI options
 
-| Option | Alias  | Description |
-|--------|--------|-------------|
-| `--defaults` | `-def` | Skip prompts, use defaults |
-| `--overwrite` | —      | Overwrite target directory if it exists |
-| `--no-install` | —      | Skip dependency installation |
-| `--features <list>` | —      | Enable specific features (`eslint`, `react-router`, `all`) |
-| `--pm <name>` | —      | Choose package manager (`npm`, `pnpm`, `yarn`) |
-| `--help` | `-h`   | Show help |
+| Option              | Alias  | Description |
+|---------------------|--------|-------------|
+| `--defaults`        | `-def` | Skip prompts, use defaults |
+| `--overwrite`       | —      | Overwrite target directory if it exists |
+| `--no-install`      | —      | Skip dependency installation |
+| `--features <list>` | — | Enable specific features (`agents-md`, `eslint`, `stylelint`, `autoprefixer`, `react-router`, `prerender`) |
+| `--pm <name>`       | —      | Choose package manager (`npm`, `pnpm`, `yarn`) |
+| `--help`            | `-h`   | Show help |
 
 ## 🧪 Default behavior
 

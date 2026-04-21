@@ -150,6 +150,17 @@ function formatProjectStructure(selectedFeatureIds) {
 function formatFeatureSpecificSections({ selectedFeatureIds, packageManager }) {
     const sections = [];
 
+    if (selectedFeatureIds.includes('agents-md')) {
+        sections.push([
+            '## AGENTS.md',
+            '',
+            'When `AGENTS.md` is enabled, the project includes a root instruction file for AI coding agents.',
+            '',
+            '- Base file: `AGENTS.md`',
+            '- Other selected features may append their own sections into this file automatically during scaffolding.',
+        ].join('\n'));
+    }
+
     if (selectedFeatureIds.includes('react-router')) {
         sections.push([
             '## Page generator',

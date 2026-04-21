@@ -1,3 +1,4 @@
+import { agentsMdFeature } from './agents-md/index.js';
 import { autoprefixerFeature } from './autoprefixer/index.js';
 import { eslintFeature } from './eslint/index.js';
 import { prerenderFeature } from './prerender/index.js';
@@ -5,6 +6,7 @@ import { reactRouterFeature } from './react-router/index.js';
 import { stylelintFeature } from './stylelint/index.js';
 
 export const features = [
+    agentsMdFeature,
     autoprefixerFeature,
     eslintFeature,
     prerenderFeature,
