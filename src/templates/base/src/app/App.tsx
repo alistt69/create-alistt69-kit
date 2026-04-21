@@ -1,4 +1,4 @@
-import Logo from '../../public/create-alistt69-kit-logo.svg';
+import Logo from '../../public/alistt69-packages-logo.svg';
 import styles from './styles.module.scss';
 
 function App() {

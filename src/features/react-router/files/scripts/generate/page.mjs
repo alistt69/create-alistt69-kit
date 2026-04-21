@@ -30,6 +30,8 @@ const ROUTER_FILE_PATH = path.join(
     'index.tsx',
 );
 
+const PRERENDER_ROUTES_PATH = 'prerender.routes.mjs';
+
 async function main() {
     const rawPageName = process.argv[2];
 
@@ -165,33 +167,49 @@ async function autoRegisterPage(pageMeta) {
     const typesFilePath = path.join(projectRoot, ROUTER_TYPES_PATH);
     const configFilePath = path.join(projectRoot, ROUTER_CONFIG_PATH);
     const routerFilePath = path.join(projectRoot, ROUTER_FILE_PATH);
+    const prerenderRoutesFilePath = path.join(projectRoot, PRERENDER_ROUTES_PATH);
 
-    const [hasTypesFile, hasConfigFile, hasRouterFile] = await Promise.all([
+    const [hasTypesFile, hasConfigFile, hasRouterFile, hasPrerenderRoutesFile] = await Promise.all([
         pathExists(typesFilePath),
         pathExists(configFilePath),
         pathExists(routerFilePath),
+        pathExists(prerenderRoutesFilePath),
     ]);
 
-    if (!hasTypesFile || !hasConfigFile || !hasRouterFile) {
-        const missingFiles = [
-            !hasTypesFile ? ROUTER_TYPES_PATH : null,
-            !hasConfigFile ? ROUTER_CONFIG_PATH : null,
-            !hasRouterFile ? ROUTER_FILE_PATH : null,
-        ].filter(Boolean);
+    const updates = [];
 
+    if (hasTypesFile && hasConfigFile && hasRouterFile) {
+        await insertRouteEnum(typesFilePath, pageMeta);
+        await insertRouteConfig(configFilePath, pageMeta);
+        await insertRouteImport(routerFilePath, pageMeta);
+        await insertRouteDefinition(routerFilePath, pageMeta);
+
+        updates.push('router');
+    }
+
+    if (hasPrerenderRoutesFile) {
+        await insertPrerenderRoute(prerenderRoutesFilePath, pageMeta);
+        updates.push('prerender');
+    }
+
+    if (updates.length === 0) {
         return {
             status: 'skipped',
-            message: `Route auto-registration skipped. Missing files: ${missingFiles.join(', ')}`,
+            message: [
+                'Route auto-registration skipped.',
+                `Missing files: ${[
+                    ROUTER_TYPES_PATH,
+                    ROUTER_CONFIG_PATH,
+                    ROUTER_FILE_PATH,
+                    PRERENDER_ROUTES_PATH,
+                ].join(', ')}`,
+            ].join(' '),
         };
     }
 
-    await insertRouteEnum(typesFilePath, pageMeta);
-    await insertRouteConfig(configFilePath, pageMeta);
-    await insertRouteImport(routerFilePath, pageMeta);
-    await insertRouteDefinition(routerFilePath, pageMeta);
-
     return {
         status: 'registered',
+        message: `Updated: ${updates.join(', ')}`,
     };
 }
 
@@ -229,6 +247,14 @@ async function insertRouteDefinition(filepath, pageMeta) {
         filepath,
         marker: '{/* @route-routes */}',
         block: `<Route path={ERoutePath.${pageMeta.routeEnumKey}} element={<${pageMeta.pageComponentName} />} />`,
+    });
+}
+
+async function insertPrerenderRoute(filepath, pageMeta) {
+    await insertBeforeMarkerLine({
+        filepath,
+        marker: '// @prerender-routes',
+        block: `'/${pageMeta.pageSlug}',`,
     });
 }
 

@@ -24,11 +24,17 @@ defineTest(
             assert(packageJson.devDependencies?.autoprefixer, 'autoprefixer should be installed');
             assert(packageJson.dependencies?.['react-router-dom'], 'react-router-dom should be installed');
             assert(packageJson.scripts?.['generate:page'], 'generate:page script should be added');
+            assert(packageJson.devDependencies?.puppeteer, 'puppeteer should be installed');
+            assert(packageJson.devDependencies?.['serve-handler'], 'serve-handler should be installed');
+            assert(packageJson.scripts?.prerender, 'prerender script should be added');
+            assert(packageJson.scripts?.['build:assets'], 'build:assets script should be added');
 
             await assertFileExists(path.join(projectPath, 'eslint.config.mjs'));
             await assertFileExists(path.join(projectPath, 'stylelint.config.mjs'));
             await assertFileExists(path.join(projectPath, 'postcss.config.cjs'));
             await assertFileExists(path.join(projectPath, 'src', 'app', 'providers', 'router', 'model', 'router', 'index.tsx'));
+            await assertFileExists(path.join(projectPath, 'prerender.routes.mjs'));
+            await assertFileExists(path.join(projectPath, 'scripts', 'prerender.mjs'));
 
             const readme = await readText(path.join(projectPath, 'README.md'));
 
@@ -43,6 +49,10 @@ defineTest(
             assertIncludes(readme, '`npm run lint:styles:fix`', 'README should contain stylelint autofix script');
             assertIncludes(readme, '`npm run generate:page`', 'README should contain page generator script');
             assertIncludes(readme, '## Page generator', 'README should contain page generator section');
+
+            assertIncludes(readme, '- Prerender', 'README should list prerender feature');
+            assertIncludes(readme, '`npm run prerender`', 'README should contain prerender script');
+            assertIncludes(readme, '## Prerender', 'README should contain prerender section');
 
             step('building project');
             await runNpmBuild(projectPath, { verbose });

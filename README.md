@@ -1,10 +1,10 @@
 <table width="100%">
-  <tr>
+    <tr>
     <td width="190" align="center">
-      <img src="assets/alistt69-packages-logo.svg" alt="Logo" width="170" height="170" style="margin-top: 50px;" />
+        <img src="assets/alistt69-packages-logo.svg" alt="Logo" width="170" height="170" style="margin-top: 50px;" />
     </td>
     <td>
-      <h1>create-alistt69-kit</h1>
+        <h1>create-alistt69-kit</h1>
 
 > **One command. Zero config fatigue.**  
 > Bootstrap a **React + TypeScript + Webpack** app with a solid starter setup and optional tooling you can enable when you need it.
@@ -14,8 +14,8 @@
 [![npm downloads](https://img.shields.io/npm/dw/create-alistt69-kit.svg)](https://www.npmjs.com/package/create-alistt69-kit)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![CI](https://github.com/alistt69/create-alistt69-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/alistt69/create-alistt69-kit/actions/workflows/ci.yml)
-</td>
-  </tr>
+        </td>
+    </tr>
 </table>
 
 ## ✨ Overview
@@ -38,6 +38,7 @@ It generates a ready-to-run **React + TypeScript + Webpack** starter with a prac
 | [Stylelint](https://stylelint.io/) | Stylesheet linting               | Optional |
 | [Autoprefixer](https://github.com/postcss/autoprefixer) | Automatic CSS vendor prefixes    | Optional |
 | [React Router](https://reactrouter.com/) | Client-side routing              | Optional |
+| [Puppeteer](https://pptr.dev/) + [serve-handler](https://github.com/vercel/serve-handler) | Static HTML prerender after production build | Optional |
 
 ---
 
@@ -51,6 +52,7 @@ Setting up a frontend project from scratch usually means repeating the same stuf
 - routing
 - linters
 - folder structure
+- project generators
 
 This starter removes that boilerplate so you can get straight to building.
 
@@ -77,15 +79,47 @@ If the standard router files are present, the generator will also register the p
 * `src/app/providers/router/model/config/index.ts`
 * `src/app/providers/router/model/router/index.tsx`
 
-You can also configure custom paths in `scripts/generate/page.mjs`:
+If prerender is enabled, the generator also configure the new route for it automatically.
+
+You can customize generator targets inside `scripts/generate/page.mjs`:
 * `ROUTER_TYPES_PATH`
 * `ROUTER_CONFIG_PATH`
 * `ROUTER_FILE_PATH`
+* `PRERENDER_ROUTES_PATH`
 
-#### Important
+**Please note,** that route auto-registration relies on special marker comments `@route-...` & `@prerender-...` inside the router files.
+Do not remove these markers unless you want to disable automatic updates!
 
-Route auto-registration relies on special marker comments `@route-...` inside the router files.
-Do not remove these markers unless you also want to disable automatic updates.
+## 🌟 Prerender
+
+When `Prerender` is enabled, the generated project gets a postbuild prerender step powered by [Puppeteer](https://pptr.dev/).
+
+Files:
+
+* `prerender.routes.mjs`
+* `scripts/prerender.mjs`
+
+Example `prerender.routes.mjs`:
+```javascript
+export default async function getPrerenderRoutes() {
+    return [
+        '/',
+        '/about',
+    ];
+}
+```
+_Useful commands inside the generated project:_
+
+```bash
+# Builds webpack assets only
+npm run build:assets
+
+# Renders configured routes into static HTML
+npm run prerender
+
+# Runs build:assets && prerender
+npm run build
+```
 
 ## 📦 Requirements
 
@@ -116,7 +150,7 @@ npm create alistt69-kit@latest my-app
 npm create alistt69-kit@latest my-app -- --defaults
 
 # Skip dependency installation
-npm create alistt69-kit@latest my-app -- -- no-install
+npm create alistt69-kit@latest my-app -- --no-install
 
 # Enable only selected features
 npm create alistt69-kit@latest my-app -- --features=eslint,react-router

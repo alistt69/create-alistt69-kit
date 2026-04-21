@@ -12,7 +12,7 @@ export default [
 
     // Paths to ignore
     {
-        ignores: ['**/dist', '**/node_modules', '**/build', 'webpack.config.ts', 'postcss.config.cjs'],
+        ignores: ['**/dist', '**/node_modules', '**/build', 'webpack.config.ts', 'postcss.config.cjs', 'prerender.mjs'],
     },
 
     // TypeScript rules

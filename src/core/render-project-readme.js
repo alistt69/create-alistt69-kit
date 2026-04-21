@@ -50,6 +50,8 @@ const scriptDescriptions = {
     'lint:styles': 'Run Stylelint',
     'lint:styles:fix': 'Run Stylelint with autofix',
     'generate:page': 'Generate a new page and auto-register it in the router when available',
+    'build:assets': 'Build production assets without prerender',
+    prerender: 'Prerender configured routes into static HTML',
 };
 
 function formatMarkdownList(items, fallback = '- None') {
@@ -169,6 +171,40 @@ function formatFeatureSpecificSections({ selectedFeatureIds, packageManager }) {
             '- `src/app/providers/router/types/index.ts`',
             '- `src/app/providers/router/model/config/index.ts`',
             '- `src/app/providers/router/model/router/index.tsx`',
+        ].join('\n'));
+    }
+
+    if (selectedFeatureIds.includes('prerender')) {
+        sections.push([
+            '## Prerender',
+            '',
+            'When `Prerender` is enabled, production build runs a postbuild Puppeteer prerender step.',
+            '',
+            'Configured routes live in:',
+            '',
+            '- `prerender.routes.mjs`',
+            '- `scripts/prerender.mjs`',
+            '',
+            'Example route config:',
+            '',
+            '```js',
+            'export default async function getPrerenderRoutes() {',
+            '    return [',
+            "        '/',",
+            "        '/about',",
+            '    ];',
+            '}',
+            '```',
+            '',
+            'Useful commands:',
+            '',
+            '```bash',
+            `${getRunScriptCommand(packageManager, 'build:assets')}`,
+            `${getRunScriptCommand(packageManager, 'prerender')}`,
+            `${getRunScriptCommand(packageManager, 'build')}`,
+            '```',
+            '',
+            'If `React Router DOM` page generator is also enabled, new pages are additionally appended to `prerender.routes.mjs` automatically when that file exists.',
         ].join('\n'));
     }
 
