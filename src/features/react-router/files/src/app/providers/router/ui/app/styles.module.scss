@@ -1,10 +1,10 @@
 .layout_wrapper {
     display: flex;
     justify-content: space-between;
-    min-width: 210px;
+    min-width: 196px;
 
     .sidebar > nav > a {
-        opacity: .7;
+        opacity: .6;
         color: inherit;
         transition: opacity .2s ease;
 
