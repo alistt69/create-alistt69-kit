@@ -137,6 +137,7 @@ function formatProjectStructure(selectedFeatureIds) {
         '- `src/` — application source code',
         '- `src/app/` — app bootstrap, providers, entry-level setup',
         '- `src/styles/` — global styles and shared styling layer',
+        '- `src/widgets/` — app widgets',
         '- `config/build/` — split webpack configuration',
     ];
 
