@@ -2,7 +2,7 @@ import { ComponentType, ReactNode } from 'react';
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import { ERoutePath } from '../../types';
 import { Error } from '../../../../../pages/error';
-import { Main } from '../../../../../pages/main';
+import { Main } from '../../../../../pages/main'; // todo: @
 /* @route-imports */
 import AppLayout from '../../ui/app';
 

@@ -1,6 +1,6 @@
 import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-
+// todo: eslint ignore
 const ROUTER_TYPES_PATH = path.join(
     'src',
     'app',
