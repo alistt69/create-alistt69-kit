@@ -11,13 +11,13 @@
     "typescript",
     "webpack"
   ],
-  "homepage": "https://github.com/alistt69/create-alistt69-kit#readme",
+  "homepage": "https://github.com/alistt69/create-kit#readme",
   "bugs": {
-    "url": "https://github.com/alistt69/create-alistt69-kit/issues"
+    "url": "https://github.com/alistt69/create-kit/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alistt69/create-alistt69-kit.git"
+    "url": "git+https://github.com/alistt69/create-kit.git"
   },
   "license": "MIT",
   "author": "alistt69",

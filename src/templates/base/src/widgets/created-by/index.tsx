@@ -20,7 +20,7 @@ function CreatedBy() {
         <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/alistt69/create-alistt69-kit"
+            href="https://github.com/alistt69/create-kit"
             className={styles.created_by}
         >
             <code className={styles.promo}>

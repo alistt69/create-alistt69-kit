@@ -4,7 +4,7 @@
         <img src="assets/alistt69-packages-logo.svg" alt="Logo" width="170" height="170" style="margin-top: 50px;" />
     </td>
     <td>
-        <h1>create-alistt69-kit</h1>
+        <h1>@alistt69/create-kit</h1>
 
 > **One command. Zero config fatigue.**  
 > Bootstrap a **React + TypeScript + Webpack** app with a solid starter setup and optional tooling you can enable when you need it.
@@ -13,7 +13,7 @@
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.18-brightgreen)](https://nodejs.org/)
 [![npm downloads](https://img.shields.io/npm/dm/create-alistt69-kit.svg)](https://www.npmjs.com/package/create-alistt69-kit)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![CI](https://github.com/alistt69/create-alistt69-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/alistt69/create-alistt69-kit/actions/workflows/ci.yml)
+[![CI](https://github.com/alistt69/create-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/alistt69/create-kit/actions/workflows/ci.yml)
         </td>
     </tr>
 </table>
