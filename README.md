@@ -24,7 +24,7 @@
 
 It generates a ready-to-run **React + TypeScript + Webpack** starter with a practical baseline and optional extras you can turn on when needed.
 
-## 🔧  What’s inside
+## 🔧 What’s inside
 
 | Tool | Purpose                          | Included |
 |------|----------------------------------|----------|
